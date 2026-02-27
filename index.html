@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual do Gestor: NR-1 e a Gestão Integral de Riscos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f5f8;
+            color: #1e2b39;
+            line-height: 1.5;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 2rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid #1e3a5f;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .header-profile {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .header-profile img {
+            width: 90px;
+            height: 90px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid #1e3a5f;
+        }
+
+        .header-info h2 {
+            font-size: 1.6rem;
+            color: #1e3a5f;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .header-info p {
+            font-size: 1rem;
+            color: #4a5f73;
+            font-weight: 500;
+        }
+
+        .document-title h1 {
+            font-size: 1.8rem;
+            color: #0a1a2a;
+            font-weight: 600;
+            line-height: 1.3;
+            text-align: right;
+        }
+
+        main {
+            max-width: 1280px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .tool-block {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+            border: 1px solid #e0e7ef;
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tool-header h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0a1a2a;
+        }
+
+        .tool-tag {
+            background: #e1e9f2;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .highlight-box {
+            background: #edf3fa;
+            border-left: 6px solid #1e3a5f;
+            padding: 1.8rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            font-weight: 500;
+        }
+
+        .data-box {
+            background: #f0f7fa;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid #c8d9e9;
+            font-size: 1rem;
+        }
+
+        .data-highlight {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e3a5f;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .definition-card {
+            background: #f8fafd;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #d0dbe8;
+        }
+
+        .definition-card h4 {
+            font-size: 1.3rem;
+            color: #1e3a5f;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #d0dbe8;
+            padding-bottom: 0.5rem;
+        }
+
+        .risk-list {
+            list-style: none;
+        }
+
+        .risk-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .risk-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #1e3a5f;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .comparison-col {
+            background: #f8fafd;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #d0dbe8;
+        }
+
+        .comparison-col h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid;
+        }
+
+        .comparison-col:first-child h4 {
+            color: #a03f3f;
+            border-bottom-color: #a03f3f;
+        }
+
+        .comparison-col:last-child h4 {
+            color: #1e7e5c;
+            border-bottom-color: #1e7e5c;
+        }
+
+        .methodology-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .methodology-table th {
+            background: #1e3a5f;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .methodology-table td, .methodology-table th {
+            padding: 1rem;
+            border: 1px solid #d0dbe8;
+        }
+
+        .methodology-table td {
+            background: #ffffff;
+        }
+
+        .process-timeline {
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: #1e3a5f;
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+            background: #f8fafd;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e0e7ef;
+        }
+
+        .step-content strong {
+            color: #1e3a5f;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .kpi-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .kpi-table th {
+            background: #1e3a5f;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .kpi-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e7ef;
+            background: #ffffff;
+        }
+
+        .diagnostic-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+
+        .diagnostic-item {
+            background: #f8fafd;
+            border: 1px solid #d0dbe8;
+            border-radius: 10px;
+            padding: 1.2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .diagnostic-item .marker {
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 2px solid #1e3a5f;
+            border-radius: 4px;
+            background: transparent;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        .closing-note {
+            background: #f2f5f8;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-top: 2.5rem;
+            border: 1px solid #cbd6e3;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: #0a1a2a;
+            color: #e0e9f2;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 4px solid #9ab0c7;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            border-bottom: 1px solid #5f7d9c;
+        }
+
+        footer a:hover {
+            border-bottom-color: #ffffff;
+        }
+
+        #topBtn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #1e3a5f;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 1000;
+        }
+
+        #topBtn:hover {
+            background: #0a1a2a;
+            transform: translateY(-3px);
+        }
+
+        #topBtn.show {
+            display: flex;
+        }
+
+        @media (max-width: 800px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-profile {
+                flex-direction: column;
+            }
+            
+            .document-title h1 {
+                text-align: center;
+            }
+            
+            .two-columns,
+            .comparison-grid,
+            .diagnostic-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tool-block {
+                padding: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-profile">
+        <img src="Executivo_Silvanio_Gestor.PNG" alt="Silvanio Gois">
+        <div class="header-info">
+            <h2>Silvanio Gois</h2>
+            <p>Gestão Estratégica e Governança</p>
+        </div>
+    </div>
+    <div class="document-title">
+        <h1>NR-1: gestão integral<br>físico, mental e organizacional</h1>
+    </div>
+</header>
+
+<main>
+    <!-- BLOCO 1: O QUE MUDA DE FATO NA NR-1 -->
+    <div class="tool-block">
+        <div class="tool-header">
+            <h3>A revolução silenciosa da NR-1</h3>
+            <span class="tool-tag">contexto</span>
+        </div>
+        
+        <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">A NR-1 deixou de ser apenas "a norma introdutória". Com a atualização, ela passou a exigir que as empresas gerenciem <strong>todos os riscos ocupacionais</strong> — incluindo os psicossociais — no mesmo nível dos riscos físicos, químicos, biológicos e ergonômicos.</p>
+        
+        <div class="highlight-box">
+            <strong>O que muda na prática:</strong> A saúde mental e a organização do trabalho entram formalmente no PGR (Programa de Gerenciamento de Riscos). Fatores como sobrecarga, assédio, metas abusivas e jornadas excessivas passam a ser tratados com a mesma seriedade que o ruído ou a altura.
+        </div>
+        
+        <div class="data-box">
+            <div class="data-highlight">+470 mil</div>
+            <p><strong>benefícios concedidos em 2024</strong> por transtornos mentais e comportamentais — crescimento de quase 70% em relação ao ano anterior. A nova NR-1 é uma resposta direta a esse cenário.</p>
+        </div>
+        
+        <p><strong>Prazo de adequação:</strong> A fiscalização com autuações começa em <strong>26 de maio de 2026</strong>. Até lá, o período é educativo, mas o Ministério Público do Trabalho já considera fatores psicossociais em investigações.</p>
+    </div>
+
+    <!-- BLOCO 2: DEFINIÇÃO CLARA - O QUE SÃO RISCOS PSICOSSOCIAIS -->
+    <div class="tool-block">
+        <div class="tool-header">
+            <h3>O que a norma considera "risco psicossocial"</h3>
+            <span class="tool-tag">definição</span>
+        </div>
+        
+        <p>Não se trata de "estresse pessoal" ou problemas da vida privada. A NR-1 foca nos <strong>fatores relacionados à concepção, organização e gestão do trabalho</strong> que podem causar danos físicos ou psicológicos.</p>
+        
+        <div class="two-columns">
+            <div class="definition-card">
+                <h4>Fatores organizacionais</h4>
+                <ul class="risk-list">
+                    <li><strong>Sobrecarga de trabalho:</strong> volume incompatível com a jornada</li>
+                    <li><strong>Metas abusivas:</strong> pressão excessiva por resultados</li>
+                    <li><strong>Jornadas prolongadas:</strong> falta de pausas e direito à desconexão</li>
+                    <li><strong>Falta de autonomia:</strong> trabalhador sem controle sobre a própria atividade</li>
+                </ul>
+            </div>
+            <div class="definition-card">
+                <h4>Fatores relacionais</h4>
+                <ul class="risk-list">
+                    <li><strong>Assédio moral:</strong> humilhações, constrangimentos, perseguições</li>
+                    <li><strong>Conflitos interpessoais:</strong> relações degradadas no ambiente</li>
+                    <li><strong>Falta de apoio:</strong> ausência de suporte de chefias e pares</li>
+                    <li><strong>Violência no trabalho:</strong> qualquer forma de agressão</li>
+                </ul>
+            </div>
+        </div>
+        
+        <p style="margin-top: 1rem;"><strong>Possíveis consequências:</strong> estresse crônico, burnout, ansiedade, depressão, e até impactos físicos como DORT (Distúrbios Osteomusculares) agravados por tensão.</p>
+    </div>
+
+    <!-- BLOCO 3: COMPARATIVO ANTES E DEPOIS (COM FOCO NO TRABALHADOR) -->
+    <div class="tool-block">
+        <div class="tool-header">
+            <h3>Como era × Como deve ser</h3>
+            <span class="tool-tag">evolução</span>
+        </div>
+        
+        <div class="comparison-grid">
+            <div class="comparison-col">
+                <h4>Antes da atualização</h4>
+                <div class="risk-list">
+                    <li>Saúde mental era tratada como "problema pessoal"</li>
+                    <li>Assédio e sobrecarga ignorados no PGR</li>
+                    <li>Foco em EPI e riscos físicos isolados</li>
+                    <li>Trabalhador era receptor passivo</li>
+                    <li>Documentos estáticos, "laudos de gaveta"</li>
+                    <li>Acidente visto como falha individual</li>
+                </div>
+            </div>
+            <div class="comparison-col">
+                <h4>Com a NR-1 atualizada</h4>
+                <div class="risk-list">
+                    <li>Saúde mental é risco ocupacional formal</li>
+                    <li>Assédio e sobrecarga entram no inventário de riscos</li>
+                    <li>Gestão integrada de todos os fatores</li>
+                    <li>Trabalhador participa da análise de riscos</li>
+                    <li>PGR é ferramenta viva de decisão</li>
+                    <li>Acidente revela falha no sistema de gestão</li>
+                </div>
+            </div>
+        </div>
+        
+        <div class="highlight-box" style="margin-top: 1rem;">
+            <strong>O ganho para o trabalhador:</strong> deixa de ser "culpado" por adoecer e passa a ser parte da solução. Sua percepção sobre o trabalho é ouvida e considerada nas medidas preventivas.
+        </div>
+    </div>
+
+    <!-- BLOCO 4: COMO IMPLEMENTAR NA PRÁTICA (METODOLOGIAS E PROCESSO) -->
+    <div class="tool-block">
+        <div class="tool-header">
+            <h3>Implementação passo a passo</h3>
+            <span class="tool-tag">método</span>
+        </div>
+        
+        <p>A NR-1 não impõe uma ferramenta específica, mas exige que a empresa escolha <strong>métodos cientificamente fundamentados</strong>, adequados ao seu porte e realidade.</p>
+        
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Planejamento e engajamento</strong>
+                    <p>Envolva SESMT, CIPA, lideranças e trabalhadores desde o início. Atribua responsabilidades formais e comunique objetivos.</p>
+                </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Levantamento de informações-base</strong>
+                    <p>Mapeie processos, indicadores de saúde (afastamentos, CAT, PCMSO) e análises ergonômicas existentes. Defina critérios de severidade e probabilidade.</p>
+                </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <strong>Identificação de perigos psicossociais</strong>
+                    <p>Utilize fontes como: CIPA, canais de ética, histórico de reclamações, análise de afastamentos, entrevistas e grupos focais.</p>
+                </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <strong>Avaliação com metodologia adequada</strong>
+                    <p>Escolha instrumentos validados como COPSOQ, ISTAS21 ou HSE Indicator para grandes grupos. Para equipes menores, workshops e observação direta podem ser suficientes.</p>
+                </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <strong>Classificação e hierarquização</strong>
+                    <p>Atribua níveis de risco combinando severidade × probabilidade. A NR-1 exige rastreabilidade completa desse processo.</p>
+                </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <strong>Definição de medidas preventivas</strong>
+                    <p>Priorize intervenções organizacionais (redesenho de tarefas, pausas, equilíbrio de carga) antes de ações individuais. Estabeleça responsáveis, prazos e recursos.</p>
+                </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">7</div>
+                <div class="step-content">
+                    <strong>Monitoramento e melhoria contínua</strong>
+                    <p>Acompanhe indicadores, revise o PGR periodicamente e incorpore o ciclo PDCA. A participação da CIPA e dos trabalhadores é essencial.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="data-box" style="margin-top: 2rem;">
+            <strong>Ferramenta de apoio:</strong> O MTE disponibilizou o "Guia de Informações sobre Fatores de Riscos Psicossociais Relacionados ao Trabalho" (versão 2025) com orientações práticas.
+        </div>
+    </div>
+
+    <!-- BLOCO 5: MÉTODOS DE AVALIAÇÃO RECOMENDADOS -->
+    <div class="tool-block">
+        <div class="tool-header">
+            <h3>Métodos de avaliação com validade científica</h3>
+            <span class="tool-tag">ferramentas</span>
+        </div>
+        
+        <table class="methodology-table">
+            <thead>
+                <tr>
+                    <th>Instrumento</th>
+                    <th>Origem</th>
+                    <th>Indicado para</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>COPSOQ</strong> (Copenhagen Psychosocial Questionnaire)</td>
+                    <td>Dinamarca / versão brasileira validada</td>
+                    <td>Avaliação abrangente de dimensões psicossociais</td>
+                </tr>
+                <tr>
+                    <td><strong>ISTAS21</strong></td>
+                    <td>Espanha / adaptado pela Fundacentro</td>
+                    <td>Identifica exposição a fatores de risco psicossocial</td>
+                </tr>
+                <tr>
+                    <td><strong>HSE Indicator</strong> (Health and Safety Executive)</td>
+                    <td>Reino Unido</td>
+                    <td>Avalia seis dimensões-chave: demanda, controle, apoio, relacionamentos, papel e mudanças</td>
+                </tr>
+                <tr>
+                    <td><strong>AEP</strong> (Avaliação Ergonômica Preliminar)</td>
+                    <td>NR-17</td>
+                    <td>Abordagem inicial integrada à ergonomia</td>
+                </tr>
+                <tr>
+                    <td><strong>AET</strong> (Análise Ergonômica do Trabalho)</td>
+                    <td>NR-17</td>
+                    <td>Exame aprofundado exigido em situações complexas</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p style="margin-top: 1rem;"><strong>Critérios obrigatórios:</strong> A ferramenta deve avaliar condições reais de trabalho (não o estado clínico individual), preservar anonimato, e ser aplicada por profissionais capacitados.</p>
+    </div>
+
+    <!-- BLOCO 6: INDICADORES DE DUPLA ENTRADA (PESSOAS E NEGÓCIO) -->
+    <div class="tool-block">
+        <div class="tool-header">
+            <h3>O que monitorar</h3>
+            <span class="tool-tag">indicadores</span>
+        </div>
+        
+        <table class="kpi-table">
+            <thead>
+                <tr>
+                    <th>Indicador</th>
+                    <th>O que revela sobre pessoas</th>
+                    <th>O que revela sobre o negócio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Taxa de afastamentos por transtornos mentais</strong></td>
+                    <td>Nível de sofrimento psicológico na força de trabalho</td>
+                    <td>Custo direto com benefícios e substituições</td>
+                </tr>
+                <tr>
+                    <td><strong>Rotatividade (turnover) voluntário</strong></td>
+                    <td>Clima organizacional e satisfação</td>
+                    <td>Custo de recrutamento e perda de talentos</td>
+                </tr>
+                <tr>
+                    <td><strong>Absenteísmo geral</strong></td>
+                    <td>Saúde física e mental da equipe</td>
+                    <td>Perda de produtividade</td>
+                </tr>
+                <tr>
+                    <td><strong>Denúncias em canais de ética</strong> (assédio, conflitos)</td>
+                    <td>Qualidade das relações no trabalho</td>
+                    <td>Risco jurídico e reputacional</td>
+                </tr>
+                <tr>
+                    <td><strong>Participação em análises de risco</strong></td>
+                    <td>Engajamento e autonomia</td>
+                    <td>Qualidade das soluções implementadas</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="data-box" style="margin-top: 1.5rem;">
+            <strong>Impacto financeiro direto:</strong> A identificação de riscos psicossociais pode afetar o FAP (Fator Acidentário de Prevenção) e, consequentemente, a alíquota previdenciária. Empresas que não gerenciam esses riscos podem ver seus custos previdenciários aumentarem.
+        </div>
+    </div>
+
+    <!-- BLOCO 7: CONTRAS E PRÓS (VISÃO REALISTA) -->
+    <div class="tool-block">
+        <div class="tool-header">
+            <h3>Desafios e benefícios</h3>
+            <span class="tool-tag">equilíbrio</span>
+        </div>
+        
+        <div class="two-columns">
+            <div class="definition-card">
+                <h4>Desafios reais</h4>
+                <ul class="risk-list">
+                    <li>Exige tempo de gestão e envolvimento multidisciplinar</li>
+                    <li>Requer mudança cultural, que é lenta</li>
+                    <li>Demanda investimento em diagnóstico e capacitação</li>
+                    <li>Expõe fragilidades antes ignoradas</li>
+                    <li>Risco jurídico se mal documentado (dados podem ser usados em ações)</li>
+                </ul>
+            </div>
+            <div class="definition-card">
+                <h4>Benefícios concretos</h4>
+                <ul class="risk-list">
+                    <li>Redução de afastamentos e rotatividade</li>
+                    <li>Ambiente mais saudável e produtivo</li>
+                    <li>Redução de passivos trabalhistas</li>
+                    <li>Economia no FAP (menos imposto sobre folha)</li>
+                    <li>Reputação e atração de talentos</li>
+                    <li>Conformidade antecipada evita multas futuras</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOCO 8: CHECKLIST DO GESTOR (AUTOAVALIAÇÃO) -->
+    <div class="tool-block">
+        <div class="tool-header">
+            <h3>Autoavaliação: sua empresa está preparada?</h3>
+            <span class="tool-tag">diagnóstico</span>
+        </div>
+        
+        <div class="diagnostic-grid">
+            <div class="diagnostic-item">
+                <div class="marker"></div>
+                <div><strong>Riscos psicossociais mapeados</strong> Sobrecarga, assédio e metas estão no inventário?</div>
+            </div>
+            <div class="diagnostic-item">
+                <div class="marker"></div>
+                <div><strong>Participação dos trabalhadores</strong> Eles são ouvidos na identificação de riscos?</div>
+            </div>
+            <div class="diagnostic-item">
+                <div class="marker"></div>
+                <div><strong>Método adequado</strong> A avaliação usa ferramenta com validade científica?</div>
+            </div>
+            <div class="diagnostic-item">
+                <div class="marker"></div>
+                <div><strong>Canal de ética ativo</strong> Existe forma segura de denunciar assédio sem retaliação?</div>
+            </div>
+            <div class="diagnostic-item">
+                <div class="marker"></div>
+                <div><strong>CIPA capacitada</strong> A comissão está preparada para atuar na prevenção de assédio?</div>
+            </div>
+            <div class="diagnostic-item">
+                <div class="marker"></div>
+                <div><strong>Planos de ação com dono</strong> Cada risco identificado tem responsável, prazo e recurso?</div>
+            </div>
+            <div class="diagnostic-item">
+                <div class="marker"></div>
+                <div><strong>Análise crítica periódica</strong> A alta direção revisa indicadores de saúde mental?</div>
+            </div>
+            <div class="diagnostic-item">
+                <div class="marker"></div>
+                <div><strong>Integração NR-1 e NR-17</strong> A avaliação ergonômica contempla fatores psicossociais?</div>
+            </div>
+        </div>
+        
+        <p style="margin-top: 2rem;">Se mais de três itens ficaram sem resposta positiva, sua gestão de riscos psicossociais precisa avançar. O prazo limite é maio de 2026.</p>
+    </div>
+
+    <!-- BLOCO 9: FECHAMENTO - VISÃO INTEGRAL -->
+    <div class="closing-note">
+        <p style="margin-bottom: 1.2rem; font-size: 1.2rem;">A NR-1 atualizada não é sobre "mais burocracia". É sobre reconhecer que <strong>gente saudável produz melhor e adoece menos</strong>.</p>
+        <p>Saúde mental e organização do trabalho deixaram de ser temas subjetivos para se tornarem <strong>exigências objetivas de gestão</strong>. O mesmo rigor que aplicamos ao ruído e à altura deve ser aplicado à sobrecarga e ao assédio.</p>
+        <p style="margin-top: 1rem;">Empresa que cuida de quem produz colhe consistência, redução de conflitos e ambiente favorável à inovação. Trabalhador que se sente cuidado entrega mais, adoece menos e permanece. <strong>Gestão de riscos é gestão de pessoas — e gente bem cuidada sustenta negócio que dura.</strong></p>
+    </div>
+</main>
+
+<footer>
+    <p>Silvanio Gois — ferramenta para gestores, 2026</p>
+    <p style="margin-top: 1.5rem;">
+        <a href="https://www.silvaniogois.com.br/" target="_blank">silvaniogois.com.br</a>
+        <span style="margin: 0 1rem; color: #5f7d9c;">|</span>
+        <a href="https://wa.me/5513988301094" target="_blank">WhatsApp</a>
+    </p>
+</footer>
+
+<button id="topBtn" title="Voltar ao topo">↑</button>
+
+<script>
+    (function() {
+        const topBtn = document.getElementById("topBtn");
+        
+        function toggleTopButton() {
+            if (window.scrollY > 400) {
+                topBtn.classList.add('show');
+                topBtn.style.display = 'flex';
+            } else {
+                topBtn.classList.remove('show');
+                topBtn.style.display = 'none';
+            }
+        }
+        
+        window.addEventListener('scroll', toggleTopButton);
+        
+        topBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        toggleTopButton();
+    })();
+</script>
+
+</body>
+</html>
